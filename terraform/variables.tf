@@ -51,8 +51,3 @@ variable "github_app_installation_id" {
   type    = string
   default = "113093932"
 }
-
-variable "target_subscriptions" {
-  type        = map(string)
-  description = "Subscriptions to grant Reader access to for the IDP agents MI"
-}

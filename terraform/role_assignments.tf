@@ -49,16 +49,17 @@ resource "azurerm_role_assignment" "agents_search_data_contributor" {
 }
 
 # Subscription-level role assignments for IDP agents MI
+# Uses subscriptions output from platform-workloads remote state
 resource "azurerm_role_assignment" "agents_subscription_reader" {
-  for_each             = var.target_subscriptions
-  scope                = "/subscriptions/${each.value}"
+  for_each             = data.terraform_remote_state.platform_workloads.outputs.subscriptions
+  scope                = "/subscriptions/${each.value.subscription_id}"
   role_definition_name = "Reader"
   principal_id         = azurerm_user_assigned_identity.idp_agents.principal_id
 }
 
 resource "azurerm_role_assignment" "agents_subscription_cost_reader" {
-  for_each             = var.target_subscriptions
-  scope                = "/subscriptions/${each.value}"
+  for_each             = data.terraform_remote_state.platform_workloads.outputs.subscriptions
+  scope                = "/subscriptions/${each.value.subscription_id}"
   role_definition_name = "Cost Management Reader"
   principal_id         = azurerm_user_assigned_identity.idp_agents.principal_id
 }
