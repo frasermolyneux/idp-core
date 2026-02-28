@@ -16,6 +16,16 @@ terraform {
       source  = "azure/azapi"
       version = "~> 2.4.0"
     }
+
+    random = {
+      source  = "hashicorp/random"
+      version = "~> 3.6.0"
+    }
+
+    time = {
+      source  = "hashicorp/time"
+      version = "~> 0.13.0"
+    }
   }
 
   backend "azurerm" {}
@@ -28,6 +38,9 @@ provider "azurerm" {
   features {
     resource_group {
       prevent_deletion_if_contains_resources = false
+    }
+    key_vault {
+      purge_soft_delete_on_destroy = false
     }
   }
 
