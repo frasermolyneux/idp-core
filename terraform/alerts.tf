@@ -1,7 +1,7 @@
 resource "azurerm_monitor_metric_alert" "ai_token_usage" {
   name                = "idp-core-${var.environment} - AI Token Usage High"
   resource_group_name = data.azurerm_resource_group.rg.name
-  scopes              = [azurerm_cognitive_account.openai.id]
+  scopes              = [azurerm_ai_services.openai.id]
   description         = "Alert when AI token usage is high"
   severity            = 2
   frequency           = "PT5M"

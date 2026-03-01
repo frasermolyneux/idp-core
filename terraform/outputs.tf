@@ -18,23 +18,23 @@ output "key_vault_uri" {
 
 # AI Foundry
 output "ai_hub_id" {
-  value = azapi_resource.ai_hub.id
+  value = azurerm_ai_foundry.hub.id
 }
 
 output "ai_hub_discovery_url" {
-  value = azapi_resource.ai_hub.output.properties.discoveryUrl
+  value = azurerm_ai_foundry.hub.discovery_url
 }
 
 output "ai_project_id" {
-  value = azapi_resource.ai_project.id
+  value = azurerm_ai_foundry_project.project.id
 }
 
-output "ai_project_discovery_url" {
-  value = azapi_resource.ai_project.output.properties.discoveryUrl
+output "ai_project_project_id" {
+  value = azurerm_ai_foundry_project.project.project_id
 }
 
 output "openai_endpoint" {
-  value = azurerm_cognitive_account.openai.endpoint
+  value = azurerm_ai_services.openai.endpoint
 }
 
 # AI Search

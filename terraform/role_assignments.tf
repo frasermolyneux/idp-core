@@ -30,7 +30,7 @@ resource "azurerm_cosmosdb_sql_role_assignment" "agents_cosmos_contributor" {
 
 # AI Foundry role assignments
 resource "azurerm_role_assignment" "agents_ai_hub_openai_user" {
-  scope                = azurerm_cognitive_account.openai.id
+  scope                = azurerm_ai_services.openai.id
   role_definition_name = "Cognitive Services OpenAI User"
   principal_id         = azurerm_user_assigned_identity.idp_agents.principal_id
 }
