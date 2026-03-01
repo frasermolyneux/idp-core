@@ -71,7 +71,7 @@ variable "chat_model_deployment_name" {
 
 variable "reasoning_model_name" {
   type    = string
-  default = "gpt-5.1-chat"
+  default = "gpt-4.1"
 }
 
 variable "reasoning_model_version" {
@@ -81,7 +81,7 @@ variable "reasoning_model_version" {
 
 variable "reasoning_model_deployment_name" {
   type    = string
-  default = "gpt-5.1-chat"
+  default = "gpt-4.1"
 }
 
 variable "embedding_model_name" {
