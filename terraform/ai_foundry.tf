@@ -37,6 +37,10 @@ resource "azurerm_ai_foundry_project" "project" {
   location           = azurerm_ai_foundry.hub.location
   ai_services_hub_id = azurerm_ai_foundry.hub.id
   friendly_name      = format("aip-%s", local.resource_prefix)
+
+  identity {
+    type = "SystemAssigned"
+  }
 }
 
 resource "azapi_resource" "ai_hub_openai_connection" {
