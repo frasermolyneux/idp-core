@@ -86,7 +86,7 @@ variable "reasoning_model_deployment_name" {
 
 variable "embedding_model_name" {
   type    = string
-  default = "text-embedding-3-small"
+  default = "text-embedding-ada-002"
 }
 
 variable "embedding_model_version" {
@@ -96,5 +96,5 @@ variable "embedding_model_version" {
 
 variable "embedding_model_deployment_name" {
   type    = string
-  default = "text-embedding-3-small"
+  default = "text-embedding-ada-002"
 }

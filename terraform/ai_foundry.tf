@@ -37,11 +37,6 @@ resource "azurerm_ai_foundry_project" "project" {
   location           = azurerm_ai_foundry.hub.location
   ai_services_hub_id = azurerm_ai_foundry.hub.id
   friendly_name      = format("aip-%s", local.resource_prefix)
-
-  identity {
-    type         = "UserAssigned"
-    identity_ids = [azurerm_user_assigned_identity.idp_agents.id]
-  }
 }
 
 resource "azapi_resource" "ai_hub_openai_connection" {
@@ -110,7 +105,7 @@ resource "azurerm_cognitive_deployment" "embedding_model" {
   }
 
   sku {
-    name     = "GlobalStandard"
+    name     = "Standard"
     capacity = 10
   }
 
