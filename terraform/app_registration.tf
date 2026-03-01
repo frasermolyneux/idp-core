@@ -25,7 +25,7 @@ resource "azuread_application" "idp_agents" {
   description      = "IDP Agents API"
   sign_in_audience = "AzureADMyOrg"
 
-  identifier_uris = ["api://idp-agents-${var.environment}"]
+  identifier_uris = ["api://${data.azuread_client_config.current.tenant_id}/idp-agents-${var.environment}"]
 
   api {
     known_client_applications = ["aebc6443-996d-45c2-90f0-388ff96faa56"]
