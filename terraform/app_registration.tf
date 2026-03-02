@@ -27,6 +27,17 @@ resource "azuread_application" "idp_agents" {
 
   identifier_uris = ["api://${data.azuread_client_config.current.tenant_id}/idp-agents-${var.environment}"]
 
+  web {
+    redirect_uris = [
+      format("https://fn-idp-agents-%s-%s.azurewebsites.net/.auth/login/aad/callback", var.environment, var.location)
+    ]
+
+    implicit_grant {
+      access_token_issuance_enabled = true
+      id_token_issuance_enabled     = true
+    }
+  }
+
   api {
     known_client_applications = []
 
@@ -78,13 +89,6 @@ resource "azuread_application" "idp_agents" {
     id                   = random_uuid.idp_user_role_id.result
     value                = "IDP.User"
     enabled              = true
-  }
-
-  web {
-    implicit_grant {
-      access_token_issuance_enabled = false
-      id_token_issuance_enabled     = true
-    }
   }
 
   prevent_duplicate_names = true
