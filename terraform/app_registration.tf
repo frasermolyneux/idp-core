@@ -112,6 +112,7 @@ resource "azuread_application" "idp" {
   web {
     redirect_uris = [
       "https://localhost:5001/signin-oidc",
+      "https://localhost:7100/signin-oidc",
       format("https://app-idp-web-%s-%s.azurewebsites.net/signin-oidc", var.environment, var.location)
     ]
 
