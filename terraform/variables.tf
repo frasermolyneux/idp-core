@@ -98,3 +98,9 @@ variable "embedding_model_deployment_name" {
   type    = string
   default = "text-embedding-ada-002"
 }
+
+variable "idp_web_custom_hostname" {
+  description = "Custom hostname for the IDP web app (e.g. idp.molyneux.io)"
+  type        = string
+  default     = ""
+}

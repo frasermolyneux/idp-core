@@ -110,11 +110,14 @@ resource "azuread_application" "idp" {
   sign_in_audience = "AzureADMyOrg"
 
   web {
-    redirect_uris = [
-      "https://localhost:5001/signin-oidc",
-      "https://localhost:7100/signin-oidc",
-      format("https://app-idp-web-%s-%s.azurewebsites.net/signin-oidc", var.environment, var.location)
-    ]
+    redirect_uris = concat(
+      [
+        "https://localhost:5001/signin-oidc",
+        "https://localhost:7100/signin-oidc",
+        format("https://app-idp-web-%s-%s.azurewebsites.net/signin-oidc", var.environment, var.location)
+      ],
+      var.idp_web_custom_hostname != "" ? ["https://${var.idp_web_custom_hostname}/signin-oidc"] : []
+    )
 
     implicit_grant {
       access_token_issuance_enabled = false
