@@ -13,3 +13,15 @@ resource "azurerm_role_assignment" "deploy_kv_secrets_officer" {
   role_definition_name = "Key Vault Secrets Officer"
   principal_id         = data.azuread_client_config.current.object_id
 }
+
+resource "azurerm_key_vault_secret" "github_app_private_key" {
+  name         = "github-app-private-key"
+  value        = "placeholder"
+  key_vault_id = azurerm_key_vault.kv.id
+
+  lifecycle {
+    ignore_changes = [value]
+  }
+
+  depends_on = [azurerm_role_assignment.deploy_kv_secrets_officer]
+}
