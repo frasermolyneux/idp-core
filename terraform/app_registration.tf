@@ -28,7 +28,7 @@ resource "azuread_application" "idp_agents" {
   identifier_uris = ["api://${data.azuread_client_config.current.tenant_id}/idp-agents-${var.environment}"]
 
   api {
-    known_client_applications = [azuread_application.idp.client_id]
+    known_client_applications = []
 
     oauth2_permission_scope {
       admin_consent_description  = "Read MCP resources"
