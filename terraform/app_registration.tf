@@ -28,7 +28,7 @@ resource "azuread_application" "idp_agents" {
   identifier_uris = ["api://${data.azuread_client_config.current.tenant_id}/idp-agents-${var.environment}"]
 
   api {
-    known_client_applications = ["aebc6443-996d-45c2-90f0-388ff96faa56"]
+    known_client_applications = [azuread_application.idp.client_id]
 
     oauth2_permission_scope {
       admin_consent_description  = "Read MCP resources"
@@ -107,7 +107,8 @@ resource "azuread_application" "idp" {
 
   web {
     redirect_uris = [
-      "https://localhost:5001/signin-oidc"
+      "https://localhost:5001/signin-oidc",
+      format("https://app-idp-web-%s-%s.azurewebsites.net/signin-oidc", var.environment, var.location)
     ]
 
     implicit_grant {
