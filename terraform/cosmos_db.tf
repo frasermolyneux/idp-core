@@ -47,3 +47,11 @@ resource "azurerm_cosmosdb_sql_container" "campaigns" {
   database_name       = azurerm_cosmosdb_sql_database.idp.name
   partition_key_paths = ["/userId"]
 }
+
+resource "azurerm_cosmosdb_sql_container" "campaign_findings" {
+  name                = "campaign-findings"
+  resource_group_name = azurerm_cosmosdb_account.idp.resource_group_name
+  account_name        = azurerm_cosmosdb_account.idp.name
+  database_name       = azurerm_cosmosdb_sql_database.idp.name
+  partition_key_paths = ["/campaignId"]
+}
