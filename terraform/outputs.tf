@@ -124,6 +124,10 @@ output "knowledge_storage_endpoint" {
   value = azurerm_storage_account.knowledge.primary_blob_endpoint
 }
 
+output "knowledge_storage_queue_endpoint" {
+  value = azurerm_storage_account.knowledge.primary_queue_endpoint
+}
+
 output "knowledge_storage_name" {
   value = azurerm_storage_account.knowledge.name
 }

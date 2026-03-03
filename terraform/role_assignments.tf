@@ -55,6 +55,12 @@ resource "azurerm_role_assignment" "agents_knowledge_storage_contributor" {
   principal_id         = azurerm_user_assigned_identity.idp_agents.principal_id
 }
 
+resource "azurerm_role_assignment" "agents_knowledge_queue_contributor" {
+  scope                = azurerm_storage_account.knowledge.id
+  role_definition_name = "Storage Queue Data Contributor"
+  principal_id         = azurerm_user_assigned_identity.idp_agents.principal_id
+}
+
 # Search Service Contributor (for programmatic index management)
 resource "azurerm_role_assignment" "agents_search_service_contributor" {
   scope                = azurerm_search_service.idp.id
