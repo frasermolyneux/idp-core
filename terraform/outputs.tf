@@ -119,6 +119,15 @@ output "github_app_pem_secret_name" {
   value = "github-app-private-key"
 }
 
+# Knowledge Storage
+output "knowledge_storage_endpoint" {
+  value = azurerm_storage_account.knowledge.primary_blob_endpoint
+}
+
+output "knowledge_storage_name" {
+  value = azurerm_storage_account.knowledge.name
+}
+
 # Durable Task Scheduler
 output "dts_endpoint" {
   value = azapi_resource.dts.output.properties.endpoint

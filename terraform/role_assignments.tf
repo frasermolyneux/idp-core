@@ -48,6 +48,20 @@ resource "azurerm_role_assignment" "agents_search_data_contributor" {
   principal_id         = azurerm_user_assigned_identity.idp_agents.principal_id
 }
 
+# Knowledge storage role assignments
+resource "azurerm_role_assignment" "agents_knowledge_storage_contributor" {
+  scope                = azurerm_storage_account.knowledge.id
+  role_definition_name = "Storage Blob Data Contributor"
+  principal_id         = azurerm_user_assigned_identity.idp_agents.principal_id
+}
+
+# Search Service Contributor (for programmatic index management)
+resource "azurerm_role_assignment" "agents_search_service_contributor" {
+  scope                = azurerm_search_service.idp.id
+  role_definition_name = "Search Service Contributor"
+  principal_id         = azurerm_user_assigned_identity.idp_agents.principal_id
+}
+
 # Subscription-level role assignments for IDP agents MI
 # Uses subscriptions output from platform-workloads remote state
 resource "azurerm_role_assignment" "agents_subscription_reader" {
