@@ -39,7 +39,10 @@ resource "azuread_application" "idp_agents" {
   }
 
   api {
-    known_client_applications = []
+    # VS Code Copilot Chat well-known client ID for MCP server auth
+    known_client_applications = [
+      "aebc6443-996d-45c2-90f0-388ff96faa56"
+    ]
 
     oauth2_permission_scope {
       admin_consent_description  = "Read MCP resources"
@@ -163,6 +166,16 @@ resource "azuread_application_password" "idp" {
 resource "azuread_application_pre_authorized" "idp_web_obo" {
   application_id       = azuread_application.idp_agents.id
   authorized_client_id = azuread_application.idp.client_id
+  permission_ids = [
+    random_uuid.mcp_read_scope_id.result,
+    random_uuid.mcp_readwrite_scope_id.result,
+  ]
+}
+
+# Pre-authorize VS Code (Copilot Chat) for MCP server access
+resource "azuread_application_pre_authorized" "vscode_mcp" {
+  application_id       = azuread_application.idp_agents.id
+  authorized_client_id = "aebc6443-996d-45c2-90f0-388ff96faa56"
   permission_ids = [
     random_uuid.mcp_read_scope_id.result,
     random_uuid.mcp_readwrite_scope_id.result,
