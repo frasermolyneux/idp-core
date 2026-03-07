@@ -6,6 +6,8 @@ resource "azurerm_key_vault" "kv" {
   sku_name            = "standard"
 
   rbac_authorization_enabled = true
+
+  tags = var.tags
 }
 
 resource "azurerm_role_assignment" "deploy_kv_secrets_officer" {

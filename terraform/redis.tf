@@ -7,4 +7,6 @@ resource "azurerm_redis_cache" "idp" {
   sku_name            = "Basic"
   minimum_tls_version = "1.2"
   redis_configuration {}
+
+  tags = var.tags
 }

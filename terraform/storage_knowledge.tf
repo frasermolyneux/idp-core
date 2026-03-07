@@ -4,6 +4,8 @@ resource "azurerm_storage_account" "knowledge" {
   location                 = data.azurerm_resource_group.rg.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
+
+  tags = var.tags
 }
 
 resource "azurerm_storage_container" "knowledge_docs" {

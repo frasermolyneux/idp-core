@@ -11,11 +11,6 @@ variable "location" {
   default = "swedencentral"
 }
 
-variable "instance" {
-  type    = string
-  default = "01"
-}
-
 variable "subscription_id" {
   type = string
 }
@@ -103,4 +98,8 @@ variable "idp_web_custom_hostname" {
   description = "Custom hostname for the IDP web app (e.g. idp.molyneux.io)"
   type        = string
   default     = ""
+}
+
+variable "tags" {
+  default = {}
 }

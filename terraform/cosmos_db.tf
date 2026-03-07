@@ -15,6 +15,8 @@ resource "azurerm_cosmosdb_account" "idp" {
     location          = data.azurerm_resource_group.rg.location
     failover_priority = 0
   }
+
+  tags = var.tags
 }
 
 resource "azurerm_cosmosdb_sql_database" "idp" {

@@ -1,6 +1,5 @@
 environment = "prd"
 location    = "swedencentral"
-instance    = "01"
 
 subscription_id = "903b6685-c12a-4703-ac54-7ec1ff15ca43"
 
@@ -23,3 +22,10 @@ platform_monitoring_state = {
 }
 
 idp_web_custom_hostname = "idp.molyneux.io"
+
+tags = {
+  Environment = "prd",
+  Workload    = "idp-core",
+  DeployedBy  = "GitHub-Terraform",
+  Git         = "https://github.com/frasermolyneux/idp-core"
+}

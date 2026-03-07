@@ -4,15 +4,19 @@ resource "azurerm_storage_account" "ai" {
   location                 = data.azurerm_resource_group.rg.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
+
+  tags = var.tags
 }
 
-# Microsoft Foundry (upgraded from Azure OpenAI — kind AIServices)
+# Microsoft Foundry(upgraded from Azure OpenAI — kind AIServices)
 resource "azurerm_ai_services" "openai" {
   name                  = format("oai-%s", local.resource_prefix)
   resource_group_name   = data.azurerm_resource_group.rg.name
   location              = data.azurerm_resource_group.rg.location
   sku_name              = "S0"
   custom_subdomain_name = format("oai-%s", local.resource_prefix)
+
+  tags = var.tags
 }
 
 resource "azurerm_ai_foundry" "hub" {
@@ -30,6 +34,8 @@ resource "azurerm_ai_foundry" "hub" {
     type         = "UserAssigned"
     identity_ids = [azurerm_user_assigned_identity.idp_agents.id]
   }
+
+  tags = var.tags
 }
 
 resource "azurerm_ai_foundry_project" "project" {
@@ -41,6 +47,8 @@ resource "azurerm_ai_foundry_project" "project" {
   identity {
     type = "SystemAssigned"
   }
+
+  tags = var.tags
 }
 
 resource "azapi_resource" "ai_hub_openai_connection" {
@@ -60,9 +68,11 @@ resource "azapi_resource" "ai_hub_openai_connection" {
       }
     }
   }
+
+  tags = var.tags
 }
 
-# Model deployments — update model names/versions after checking availability:
+# Model deployments— update model names/versions after checking availability:
 #   az cognitiveservices account list-models --name <account> --resource-group <rg>
 resource "azurerm_cognitive_deployment" "chat_model" {
   name                 = var.chat_model_deployment_name

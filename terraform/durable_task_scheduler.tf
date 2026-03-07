@@ -14,6 +14,8 @@ resource "azapi_resource" "dts" {
   }
 
   response_export_values = ["properties.endpoint"]
+
+  tags = var.tags
 }
 
 resource "azapi_resource" "dts_task_hub" {
