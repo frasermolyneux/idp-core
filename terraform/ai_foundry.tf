@@ -68,8 +68,6 @@ resource "azapi_resource" "ai_hub_openai_connection" {
       }
     }
   }
-
-  tags = var.tags
 }
 
 # Model deployments— update model names/versions after checking availability:
